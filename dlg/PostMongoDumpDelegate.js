@@ -26,12 +26,12 @@ exports.postDump = function(postDumpRequest) {
         console.log(stdout);
         console.log(stderr);
 
-        exec('rm -r /mongo-dumps; git clone https://' + a + ':' + b + '@gitlab.com/totoances/' + postDumpRequest.env + '-mongo-dump.git; mv ' + dumpname + ' /mongo-dumps', function(err, stdout, stderr) {
+        exec('rm -r /' + env + '-mongo-dump; git clone https://' + a + ':' + b + '@gitlab.com/totoances/' + postDumpRequest.env + '-mongo-dump.git; mv ' + dumpname + ' /' + env + '-mongo-dump', function(err, stdout, stderr) {
 
           console.log(stdout);
           console.log(stderr);
 
-          exec('cd /mongo-dumps; git init; git config --global user.email "toto.matteazzi@gmail.com"; git config --global user.name "totoances"; git add ' + dumpname + '; git commit -m \'Backup\'; git push --set-upstream https://' + a + ':' + b + '@gitlab.com/totoances/' + postDumpRequest.env + '-mongo-dump.git master;', function(err, stdout, stderr) {
+          exec('cd /' + env + '-mongo-dump; git init; git config --global user.email "toto.matteazzi@gmail.com"; git config --global user.name "totoances"; git add ' + dumpname + '; git commit -m \'Backup\'; git push --set-upstream https://' + a + ':' + b + '@gitlab.com/totoances/' + postDumpRequest.env + '-mongo-dump.git master;', function(err, stdout, stderr) {
 
             console.log(stdout);
             console.log(stderr);
