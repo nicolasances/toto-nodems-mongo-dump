@@ -1,16 +1,34 @@
 var exec = require('child_process').exec;
+var moment = require('moment-timezone');
 
-exports.postDump = function() {
+var a = 'totoances';
+var b = 'totonazzi';
+
+exports.postDump = function(postDumpRequest) {
 
   return new Promise(function(success, failure) {
 
-    exec('mongodump --host mongo:27017 -o /mongo-setup', function(err, stdout, stderr) {
+    if (postDumpRequest == null || postDumpRequest.env == null || postDumpRequest.env == '') {
+      failure();
+      return;
+    }
 
-      console.log(stdout);
-      console.log(stderr);
-      console.log(err);
+    var dumpTS = moment().tz('Europe/Rome').format('YYYYMMDDHHmmss');
+    var dumpname = 'totodump-' + dumpTS + '.tgz';
 
-      success();
+    exec('mongodump --host mongo:27017 -o /mongo-dump', function(err, stdout, stderr) {
+
+      exec('tar -c -f ' + dumpname + ' /mongo-dump', function(err, stdout, stderr) {
+
+        exec('mkdir /mongo-dumps; mv ' + dumpname + ' /mongo-dumps', function(err, stdout, stderr) {
+
+          exec('cd /mongo-dumps; git init; git add ' + dumpname + '; git commit -m \'Backup\'; git push https://' + a + ':' + b + '@gitlab.com/totoances/' + postDumpRequest.env + '-mongo-dump.git;', function(err, stdout, stderr) {
+
+            success();
+          });
+        });
+
+      });
 
     });
 
