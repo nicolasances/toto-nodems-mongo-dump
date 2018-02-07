@@ -26,7 +26,7 @@ exports.postDump = function(postDumpRequest) {
         console.log(stdout);
         console.log(stderr);
 
-        exec('mkdir /mongo-dumps; mv ' + dumpname + ' /mongo-dumps', function(err, stdout, stderr) {
+        exec('rm -r /mongo-dumps; git clone https://' + a + ':' + b + '@gitlab.com/totoances/' + postDumpRequest.env + '-mongo-dump.git; mv ' + dumpname + ' /mongo-dumps', function(err, stdout, stderr) {
 
           console.log(stdout);
           console.log(stderr);
