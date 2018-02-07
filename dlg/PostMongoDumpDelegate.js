@@ -31,7 +31,7 @@ exports.postDump = function(postDumpRequest) {
           console.log(stdout);
           console.log(stderr);
 
-          exec('cd /mongo-dumps; git init; git config --global user.email "toto.matteazzi@gmail.com"; git config --global user.name "totoances"; git add ' + dumpname + '; git commit -m \'Backup\'; git push https://' + a + ':' + b + '@gitlab.com/totoances/' + postDumpRequest.env + '-mongo-dump.git;', function(err, stdout, stderr) {
+          exec('cd /mongo-dumps; git init; git config --global user.email "toto.matteazzi@gmail.com"; git config --global user.name "totoances"; git add ' + dumpname + '; git commit -m \'Backup\'; git push --set-upstream https://' + a + ':' + b + '@gitlab.com/totoances/' + postDumpRequest.env + '-mongo-dump.git master;', function(err, stdout, stderr) {
 
             console.log(stdout);
             console.log(stderr);
