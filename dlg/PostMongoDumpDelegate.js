@@ -38,7 +38,7 @@ exports.postDump = function(postDumpRequest) {
             console.log(stdout);
             console.log(stderr);
 
-            success();
+            success({filename: dumpname});
           });
         });
 
