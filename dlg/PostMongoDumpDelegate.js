@@ -4,7 +4,7 @@ exports.postDump = function() {
 
   return new Promise(function(success, failure) {
 
-    exec('mongodump --host mongo:27017', function(err, stdout, stderr) {
+    exec('mongodump --host mongo:27017 -o /mongo-setup', function(err, stdout, stderr) {
 
       console.log(stdout);
       console.log(stderr);
