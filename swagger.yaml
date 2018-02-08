@@ -14,6 +14,11 @@ paths:
         - application/json
       produces:
         - application/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#definitions/PostDumpRequest'
       responses:
         '201':
           description: Successful operation
@@ -21,8 +26,9 @@ paths:
           description: Invalid status value
 
 definitions:
-  API:
+  PostDumpRequest:
     type: object
     properties:
-      name:
+      env:
         type: string
+        description: 'The environment in which to request the dump (env, prod)'
