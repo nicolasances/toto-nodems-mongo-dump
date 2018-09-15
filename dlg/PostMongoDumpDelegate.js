@@ -44,7 +44,7 @@ exports.postDump = function(postDumpRequest) {
 
         console.log('[' + dumpTS + '] - Cloning git folder: ' + gitFolder);
 
-        exec('rm -r ' + gitFolder + '; git clone https://' + a + ':' + b + '@gitlab.com/totoances/' + postDumpRequest.env + '-mongo-dump.git; mv ' + dumpname + ' ' + gitFolder, function(err, stdout, stderr) {
+        exec('rm -rf ' + gitFolder + '; git clone https://' + a + ':' + b + '@gitlab.com/totoances/' + postDumpRequest.env + '-mongo-dump.git; mv ' + dumpname + ' ' + gitFolder, function(err, stdout, stderr) {
 
           console.log('[' + dumpTS + '] - Git folder cloned');
 
