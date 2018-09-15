@@ -31,9 +31,14 @@ exports.postDump = function(postDumpRequest) {
       console.log('[' + dumpTS + '] - mongodump executed');
 
       console.log(stdout);
-      console.log(stderr);
 
       console.log('[' + dumpTS + '] - Creating tar of ' + dumpname);
+
+      if (err) {
+        console.log(err);
+        failure(err);
+        return;
+      }
 
       exec('tar -c -f ' + dumpname + ' /mongo-dump', function(err, stdout, stderr) {
 
