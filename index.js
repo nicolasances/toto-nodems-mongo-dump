@@ -19,7 +19,11 @@ app.use(bodyParser.json());
 app.use(express.static('/app'));
 
 app.get('/', function(req, res) {res.send({api: apiName, status: 'running'});});
-app.post('/dumps', function(req, res) {logger.apiCalled(apiName, '/dumps', 'POST', req.query, req.params, req.body); postMongoDumpDlg.postDump(req.body).then(function(result) {res.send(result);});});
+app.post('/dumps', function(req, res) {
+  logger.apiCalled(apiName, '/dumps', 'POST', req.query, req.params, req.body);
+  postMongoDumpDlg.postDump(req.body)
+    .then((result) => {res.send(result);}, (error) => {console.log(error); res.status(500).send(error)});
+});
 
 app.listen(8080, function() {
   console.log('Mongo Dump Microservice up and running');
