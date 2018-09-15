@@ -10,7 +10,7 @@ exports.postDump = function(postDumpRequest) {
 
     var dumpTS = moment().tz('Europe/Rome').format('YYYYMMDDHHmmss');
 
-    console.log('[' + dumpTS + '] - Mongo Dump requested. Payload: ' + postDumpRequest);
+    console.log('[' + dumpTS + '] - Mongo Dump requested. Environment: ' + postDumpRequest.env);
 
     if (postDumpRequest == null || postDumpRequest.env == null || postDumpRequest.env == '') {
       failure();
