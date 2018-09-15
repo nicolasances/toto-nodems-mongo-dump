@@ -8,12 +8,14 @@ exports.postDump = function(postDumpRequest) {
 
   return new Promise(function(success, failure) {
 
+    var dumpTS = moment().tz('Europe/Rome').format('YYYYMMDDHHmmss');
+
+    console.log('[' + dumpTS + '] - Mongo Dump requested. Payload: ' + postDumpRequest);
+
     if (postDumpRequest == null || postDumpRequest.env == null || postDumpRequest.env == '') {
       failure();
       return;
     }
-
-    var dumpTS = moment().tz('Europe/Rome').format('YYYYMMDDHHmmss');
 
     console.log('[' + dumpTS + '] - Starting Mongo Dump');
 
