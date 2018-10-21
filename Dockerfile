@@ -1,9 +1,8 @@
-FROM node:8.9.4-alpine
+FROM mongo:4
 
-RUN apk update
-RUN apk upgrade --update
-RUN apk add mongodb-tools
-RUN apk add git
+RUN apt-get update
+RUN apt-get install -y nodejs
+RUN apt-get install -y git
 
 RUN mkdir /app
 

@@ -26,7 +26,7 @@ exports.postDump = function(postDumpRequest) {
     console.log('[' + dumpTS + '] - Git folder : ' + gitFolder);
     console.log('[' + dumpTS + '] - Executing mongodump');
 
-    exec('mongodump --host mongo:27017 -o /mongo-dump', function(err, stdout, stderr) {
+    exec('mongodump --host mongo --port 27017 -o /mongo-dump', function(err, stdout, stderr) {
 
       console.log('[' + dumpTS + '] - mongodump executed');
 
