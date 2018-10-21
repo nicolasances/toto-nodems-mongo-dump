@@ -8,4 +8,4 @@ RUN mkdir /app
 
 COPY . /app/
 
-CMD node /app/index.js
+CMD nodejs /app/index.js
