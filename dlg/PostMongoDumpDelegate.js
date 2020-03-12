@@ -4,7 +4,9 @@ var moment = require('moment-timezone');
 var a = 'totoances';
 var b = 'totonazzi';
 
-exports.postDump = function(postDumpRequest) {
+exports.postDump = function(req) {
+
+  postDumpRequest = req.body;
 
   return new Promise(function(success, failure) {
 
