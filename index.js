@@ -6,4 +6,4 @@ var api = new Controller('mongo-dump');
 
 api.path('POST', '/dumps', (req, res) => {postMongoDumpDlg})
 
-app.listen();
+api.listen();
